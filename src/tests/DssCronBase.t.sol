@@ -15,7 +15,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 pragma solidity 0.8.13;
 
-import "dss-test/DSSTest.sol";
+import "dss-test/DssTest.sol";
 import {IlkRegistryAbstract} from "dss-interfaces/Interfaces.sol";
 
 import {Sequencer} from "../Sequencer.sol";
@@ -23,7 +23,7 @@ import {LiquidatorJob} from "../LiquidatorJob.sol";
 import {LerpJob} from "../LerpJob.sol";
 
 // Integration tests against live MCD
-abstract contract DssCronBaseTest is DSSTest {
+abstract contract DssCronBaseTest is DssTest {
 
     using MCD for DssInstance;
 
@@ -41,11 +41,11 @@ abstract contract DssCronBaseTest is DSSTest {
 
     function setUp() public {
         dss = MCD.loadFromChainlog(0xdA0Ab1e0017DEbCd72Be8599041a2aa3bA7e740F);
-        
+
         sequencer = new Sequencer();
 
         ilkRegistry = IlkRegistryAbstract(dss.chainlog.getAddress("ILK_REGISTRY"));
-        
+
         // Add a default network
         sequencer.addNetwork(NET_A, 13);
         assertEq(sequencer.totalWindowSize(), 13);
@@ -55,7 +55,7 @@ abstract contract DssCronBaseTest is DSSTest {
 
         // Add a default user
         user = dss.newUser();
-        
+
         setUpSub();
     }
 
